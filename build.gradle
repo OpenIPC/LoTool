@@ -1,0 +1,18 @@
+plugins {
+    id 'application'
+}
+
+group = "lotool"
+version = "1.0"
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+}
+
+application {
+    mainClassName = 'org.openipc.lotool.Main'
+}
+
+dependencies {
+    implementation(fileTree("lib"))
+}
