@@ -22,7 +22,7 @@ public class Main {
 
         Path about_me_txt = basePath.resolve("Resources").resolve("about\\ me.txt");
 
-        if (Files.exists(about_me_txt) && Files.isRegularFile(about_me_txt)) {
+        if (Files.isRegularFile(about_me_txt)) {
             System.err.println("Can't find " + about_me_txt.toString() +", your HiTool version is incompatible, exiting.");
             System.exit(1);
         }
@@ -66,7 +66,7 @@ public class Main {
     }
 
     private static void decryptAll(Path basePath, String glob, String ext, Decryptor decryptor) throws Exception {
-        if (Files.exists(basePath) && Files.isDirectory(basePath)) {
+        if (Files.isDirectory(basePath)) {
             DirectoryStream<Path> paths = Files.newDirectoryStream(basePath, glob);
             for (Path inputPath : paths) {
                 Path outputPath = inputPath.resolveSibling(inputPath.getFileName() + ext);
