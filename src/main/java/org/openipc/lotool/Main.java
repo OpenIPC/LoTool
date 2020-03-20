@@ -20,6 +20,13 @@ public class Main {
 
         Path basePath = Paths.get(args[0]);
 
+        Path about_me_txt = basePath.resolve("Resources").resolve("about\\ me.txt");
+
+        if (Files.exists(about_me_txt) && Files.isRegularFile(about_me_txt)) {
+            System.err.println("Can't find " + about_me_txt.toString() +", your HiTool version is incompatible, exiting.");
+            System.exit(1);
+        }
+
         decryptAll(
                 basePath.resolve("Resources/HiReg/ChipHome/en"),
                 "*.chip",
@@ -59,10 +66,14 @@ public class Main {
     }
 
     private static void decryptAll(Path basePath, String glob, String ext, Decryptor decryptor) throws Exception {
-        DirectoryStream<Path> paths = Files.newDirectoryStream(basePath, glob);
-        for (Path inputPath : paths) {
-            Path outputPath = inputPath.resolveSibling(inputPath.getFileName() + ext);
-            decryptor.decrypt(inputPath, outputPath);
+        if (Files.exists(basePath) && Files.isDirectory(basePath)) {
+            DirectoryStream<Path> paths = Files.newDirectoryStream(basePath, glob);
+            for (Path inputPath : paths) {
+                Path outputPath = inputPath.resolveSibling(inputPath.getFileName() + ext);
+                decryptor.decrypt(inputPath, outputPath);
+            }
+        } else {
+            System.err.println("Can't find " + basePath.toString() + ", skipping.");
         }
     }
 
