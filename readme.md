@@ -22,3 +22,5 @@ the application like this: `./build/install/LoTool/bin/LoTool <HiTool directory>
 
 As a result, you get decrypted files with a proper extension in
 the same directory as the original encrypted files.
+
+Enjoy
