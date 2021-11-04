@@ -24,3 +24,4 @@ As a result, you get decrypted files with a proper extension in
 the same directory as the original encrypted files.
 
 Enjoy
+
